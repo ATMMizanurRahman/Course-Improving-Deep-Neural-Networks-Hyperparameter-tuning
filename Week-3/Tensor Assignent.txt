@@ -1,0 +1,126 @@
+import math
+
+import numpy as np
+
+import h5py
+
+import matplotlib.pyplot as plt
+
+import tensorflow as tf
+
+from tensorflow.python.framework import ops
+
+from tf_utils import load_dataset, random_mini_batches, convert_to_one_hot, predict
+
+​
+
+%matplotlib inline
+
+np.random.seed(1)
+
+
+
+
+
+2. loss ber krar tension algo 
+
+y_hat = tf.constant(36, name='y_hat')            # Define y_hat constant. Set to 36.
+y = tf.constant(39, name='y')                    # Define y. Set to 39
+
+loss = tf.Variable((y - y_hat)**2, name='loss')  # Create a variable for the loss
+
+init = tf.global_variables_initializer()         # When init is run later (session.run(init)),
+                                                 # the loss variable will be initialized and ready to be computed
+with tf.Session() as session:                    # Create a session and print the output
+    session.run(init)                            # Initializes the variables
+    print(session.run(loss))                     # Prints the loss
+
+
+
+
+3. 2 ta number ke multiply kora
+
+a = tf.constant(2)
+b = tf.constant(10)
+c = tf.multiply(a,b)
+sess = tf.Session()
+print(sess.run(c))
+
+
+4. Placeholder holo emon variable jar value pore dite hoi
+age use kra jai na
+
+x = tf.placeholder(tf.int64, name = 'x')
+print(sess.run(2 * x, feed_dict = {x: 3}))
+sess.close()
+
+
+
+1. FIrst jeta ase
+
+    X = tf.constant(np.random.randn(3,1), name = "X")
+    W = tf.constant(np.random.randn(4,3), name = "W")
+    b = tf.constant(np.random.randn(4,1), name = "b")
+    Y = tf.add(tf.matmul(W, X), b)
+
+    sess = tf.Session() ##None
+    result = sess.run(Y) ##None
+
+
+2. Sigmoid FUnction
+
+  x = tf.placeholder(tf.float32, name = "x") 
+     sigmoid = tf.sigmoid(x) 
+ with tf.Session() as sess:
+        result = sess.run(sigmoid, feed_dict = {x : z}) ##None
+
+
+
+3. Cost ber krar Built-in function o ase
+
+z = tf.placeholder(tf.float32, name = "z") ##None
+y = tf.placeholder(tf.float32, name = "y") ##None
+cost = tf.nn.sigmoid_cross_entropy_with_logits(logits = z,  labels = y) ##None
+sess = tf.Session() 
+cost = sess.run(cost, feed_dict = {z : logits, y : labels})
+sess.close()
+
+
+4. One Hot Encoding . Orokom matrix  banaia dei. y={0,3,0,1,2}
+
+
+C = tf.constant(C, name = "C")
+one_hot_matrix = tf.one_hot(labels, depth=C, axis=0) 
+sess = tf.Session() 
+one_hot = sess.run(one_hot_matrix) 
+sess.close() 
+
+
+5. Ekta vector ke Purata 0 or 1 dia initialize kre deo
+
+    ones = tf.ones(shape) ##None
+    sess = tf.Session() ##None
+    ones = sess.run(ones) ##Non
+    sess.close() ##None
+    return ones
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
